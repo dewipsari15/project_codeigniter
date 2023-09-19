@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
         :root{
-        --color-default:#004f83;
-        --color-second:#0067ac;
+        --color-default:#000080;
+        --color-second:#000081;
         --color-white:#fff;
         --color-body:#e4e9f7;
         --color-light:#e0e0e0;
@@ -312,8 +314,8 @@
 <body>
 <div class="sidebar">
     <div class="logo_details">
-      <i class="bx bxl-audible icon"></i>
-      <div class="logo_name">Code Effect</div>
+      <!-- <i class="bx bxl-audible icon"></i> -->
+      <div class="logo_name">miniproject</div>
       <i class="bx bx-menu" id="btn"></i>
     </div>
     <ul class="nav-list">
@@ -323,69 +325,33 @@
          <span class="tooltip">Search</span>
       </li>
       <li>
-        <a href="#">
+        <a href="<?php echo base_url('main'); ?>">
           <i class="bx bx-grid-alt"></i>
           <span class="link_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="#">
+        <a href="<?php echo base_url('siswa'); ?>">
           <i class="bx bx-user"></i>
-          <span class="link_name">User</span>
+          <span class="link_name">Siswa</span>
         </a>
-        <span class="tooltip">User</span>
+        <span class="tooltip">Siswa</span>
       </li>
       <li>
-        <a href="#">
-          <i class="bx bx-chat"></i>
-          <span class="link_name">Message</span>
+        <a href="<?php echo base_url('guru'); ?>">
+          <i class="bx bx-user"></i>
+          <span class="link_name">Guru</span>
         </a>
-        <span class="tooltip">Message</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="link_name">Analytics</span>
-        </a>
-        <span class="tooltip">Analytics</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-folder"></i>
-          <span class="link_name">File Manger</span>
-        </a>
-        <span class="tooltip">File Manger</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-cart-alt"></i>
-          <span class="link_name">Order</span>
-        </a>
-        <span class="tooltip">Order</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-cog"></i>
-          <span class="link_name">Settings</span>
-        </a>
-        <span class="tooltip">Settings</span>
+        <span class="tooltip">Guru</span>
       </li>
       <li class="profile">
-        <div class="profile_details">
-          <img src="profile.jpeg" alt="profile image">
-          <div class="profile_content">
-            <div class="name">Anna Jhon</div>
-            <div class="designation">Admin</div>
-          </div>
-        </div>
         <i class="bx bx-log-out" id="log_out"></i>
       </li>
     </ul>
   </div>
-  <section class="home-section">
-    <div class="text">Dashboard</div>
-  </section>
+  <!-- <section class="home-section">
+  </section> -->
   <script>
     window.onload = function(){
         const sidebar = document.querySelector(".sidebar");

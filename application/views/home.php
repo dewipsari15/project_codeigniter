@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;">Welcome to codeigniter 3</h1>
+    <div class="d-flex">
+        <div class="main">
+            <h1 style="text-align: center;">Welcome to codeigniter 3</h1>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -1,11 +1,16 @@
+<?php
+$flash_password = $this->session->flashdata('salah_password');
+$flash_register = $this->session->flashdata('berhasil_register');
+$flash_login = $this->session->flashdata('gagal_login');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auth</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
@@ -268,7 +273,7 @@
                 <br>
                 <span>Gunakan email Anda untuk pendaftaran</span>
                 <br>
-                <input type="text" placeholder="Name" name="nama" />
+                <input type="text" placeholder="Name" name="username" />
                 <input type="email" placeholder="Email" name="email" />
                 <input type="password" placeholder="Password" name="password" />
                 <input type="text" placeholder="Role" name="role" />
@@ -315,6 +320,42 @@
         signInButton.addEventListener('click', () => {
             container.classList.remove("right-panel-active");
         });
+
+        // variabel sweetalert
+        var flashPassword = "<?php echo $flash_password; ?>";
+        var flashRegister = "<?php echo $flash_register; ?>";
+        var flashLogin = "<?php echo $flash_login; ?>";
+
+        // sweeetalert
+        if (flashPassword) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...!',
+                text: flashPassword,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        if (flashRegister) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Susccess',
+                text: flashRegister,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        if (flashLogin) {
+            Swal.fire({
+                icon: 'error',
+                // title: 'Susccess',
+                text: flashLogin,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
 </body>
 </html>
