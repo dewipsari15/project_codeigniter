@@ -21,6 +21,13 @@
         border-bottom: 1px solid #ccc;
     }
 
+    .card-body {
+        padding: 10px 20px;
+        background-color: #f8f9fa;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+    }
+
     .custom-table {
         width: 100%;
         border-collapse: collapse;
@@ -100,36 +107,38 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h3>Data Siswa</h3>
-                <div class="btn btn-sm btn-primary">Tambah</div>
+                <a href="<?php echo base_url('siswa/tambah_siswa'); ?>" class="btn btn-sm btn-primary">Tambah</a> 
             </div>
         </div>
-        <table class="custom-table"> 
-            <thead> 
-                <tr> 
-                    <th>No</th> 
-                    <th>Nama</th> 
-                    <th>NISN</th> 
-                    <th>Gender</th> 
-                    <th>Kelas</th> 
-                    <th class="text-center">Aksi</th> 
-                </tr> 
-            </thead> 
-            <tbody> 
-            <?php $no=0;foreach($siswa as $row): $no++ ?> 
+        <div class="card-body">
+            <table class="custom-table"> 
+                <thead> 
                     <tr> 
-                        <td><?php echo $no ?></td> 
-                        <td><?php echo $row->nama_siswa ?></td> 
-                        <td><?php echo $row->nisn ?></td> 
-                        <td><?php echo $row->gender ?></td> 
-                        <td><?php echo tampil_full_kelas_byid($row->id_kelas) ?></td>
-                        <td class="text-center"> 
-                            <a href="<?php echo base_url('admin/update_siswa/'). $row->id_siswa; ?>" class="btn btn-sm btn-primary">Update</a> 
-                            <button onclick="hapus(<?php echo $row->id_siswa; ?>)" class="btn btn-sm btn-danger">Delete</button> 
-                        </td> 
+                        <th>No</th> 
+                        <th>Nama</th> 
+                        <th>NISN</th> 
+                        <th>Gender</th> 
+                        <th>Kelas</th> 
+                        <th class="text-center">Aksi</th> 
                     </tr> 
-            <?php endforeach ?> 
-            </tbody> 
-        </table>
+                </thead> 
+                <tbody> 
+                <?php $no=0;foreach($siswa as $row): $no++ ?> 
+                        <tr> 
+                            <td><?php echo $no ?></td> 
+                            <td><?php echo $row->nama_siswa ?></td> 
+                            <td><?php echo $row->nisn ?></td> 
+                            <td><?php echo $row->gender ?></td> 
+                            <td><?php echo tampil_full_kelas_byid($row->id_kelas) ?></td>
+                            <td class="text-center"> 
+                                <a href="<?php echo base_url('siswa/update_siswa/'). $row->id_siswa; ?>" class="btn btn-sm btn-primary">Update</a> 
+                                <button onclick="hapus(<?php echo $row->id_siswa; ?>)" class="btn btn-sm btn-danger">Delete</button> 
+                            </td> 
+                        </tr> 
+                <?php endforeach ?> 
+                </tbody> 
+            </table>
+        </div>
   </div>
   </div>
 </div>
@@ -138,7 +147,7 @@
         function hapus(id) {
             var yes = confirm('Yakin Di Hapus?');
             if (yes == true) {
-                window.location.href = "<?php echo base_url('admin/hapus_siswa/'); ?>" + id;
+                window.location.href = "<?php echo base_url('siswa/hapus_siswa/'); ?>" + id;
             }
         }
     </script>

@@ -346,7 +346,9 @@
         <span class="tooltip">Guru</span>
       </li>
       <li class="profile">
-        <i class="bx bx-log-out" id="log_out"></i>
+        <a href="<?php echo base_url('auth/logout'); ?>">
+          <i class="bx bx-log-out" id="log_out"></i>
+        </a>
       </li>
     </ul>
   </div>

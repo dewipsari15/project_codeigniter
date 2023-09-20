@@ -21,6 +21,13 @@
         border-bottom: 1px solid #ccc;
     }
 
+    .card-body {
+        padding: 10px 20px;
+        background-color: #f8f9fa;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+    }
+
     .custom-table {
         width: 100%;
         border-collapse: collapse;
@@ -100,36 +107,38 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h3>Data Guru</h3>
-                <div class="btn btn-sm btn-primary">Tambah</div>
+                <a href="<?php echo base_url('guru/tambah_guru'); ?>" class="btn btn-sm btn-primary">Tambah</a>
             </div>
         </div>
-        <table class="custom-table"> 
-            <thead> 
-                <tr> 
-                    <th>No</th> 
-                    <th>Nama</th> 
-                    <th>NIK</th> 
-                    <th>Gender</th> 
-                    <th>Mapel</th> 
-                    <th class="text-center">Aksi</th> 
-                </tr> 
-            </thead> 
-            <tbody> 
-            <?php $no=0;foreach($guru as $row): $no++ ?> 
+        <div class="card-body">
+            <table class="custom-table"> 
+                <thead> 
                     <tr> 
-                        <td><?php echo $no ?></td> 
-                        <td><?php echo $row->nama_guru ?></td> 
-                        <td><?php echo $row->nik ?></td> 
-                        <td><?php echo $row->gender ?></td> 
-                        <td><?php echo tampil_mapel($row->id_mapel) ?></td>
-                        <td class="text-center"> 
-                            <a href="<?php echo base_url('admin/update_guru/'). $row->id; ?>" class="btn btn-sm btn-primary">Update</a> 
-                            <button onclick="hapus(<?php echo $row->id; ?>)" class="btn btn-sm btn-danger">Delete</button> 
-                        </td> 
+                        <th>No</th> 
+                        <th>Nama</th> 
+                        <th>NIK</th> 
+                        <th>Gender</th> 
+                        <th>Mapel</th> 
+                        <th class="text-center">Aksi</th> 
                     </tr> 
-            <?php endforeach ?> 
-            </tbody> 
-        </table>
+                </thead> 
+                <tbody> 
+                <?php $no=0;foreach($guru as $row): $no++ ?> 
+                        <tr> 
+                            <td><?php echo $no ?></td> 
+                            <td><?php echo $row->nama_guru ?></td> 
+                            <td><?php echo $row->nik ?></td> 
+                            <td><?php echo $row->gender ?></td> 
+                            <td><?php echo tampil_mapel($row->id_mapel) ?></td>
+                            <td class="text-center"> 
+                                <a href="<?php echo base_url('guru/update_guru/'). $row->id; ?>" class="btn btn-sm btn-primary">Update</a> 
+                                <button onclick="hapus(<?php echo $row->id; ?>)" class="btn btn-sm btn-danger">Delete</button> 
+                            </td> 
+                        </tr> 
+                <?php endforeach ?> 
+                </tbody> 
+            </table>
+        </div>
   </div>
   </div>
 </div>
@@ -138,7 +147,7 @@
         function hapus(id) {
             var yes = confirm('Yakin Di Hapus?');
             if (yes == true) {
-                window.location.href = "<?php echo base_url('admin/hapus_guru/'); ?>" + id;
+                window.location.href = "<?php echo base_url('guru/hapus_guru/'); ?>" + id;
             }
         }
     </script>

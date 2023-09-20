@@ -31,7 +31,7 @@ class Siswa extends CI_Controller {
 			'id_kelas' => $this->input->post('id_kelas'),
 		];
 		$this->m_model->tambah_data('siswa', $data);
-		redirect(base_url('siswa/siswa'));
+		redirect(base_url('siswa'));
     }
 
     public function update_siswa($id){
@@ -52,7 +52,7 @@ class Siswa extends CI_Controller {
         ('siswa', $data, array('id_siswa'=>$this->input->post('id_siswa')));
         if($eksekusi)
         {
-            redirect(base_url('siswa/siswa'));
+            redirect(base_url('siswa'));
         }
         else
         {
@@ -62,7 +62,7 @@ class Siswa extends CI_Controller {
 
     public function hapus_siswa($id) {
         $this->m_model->delete('siswa', 'id_siswa', $id);
-		redirect(base_url('siswa/siswa'));
+		redirect(base_url('siswa'));
     }
 }
 ?>

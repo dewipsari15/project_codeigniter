@@ -15,10 +15,11 @@ class Auth extends CI_Controller {
 	}
     
     // function aksinya
-    public function aksi_register() {
+    public function aksi_register()
+    {
         $email = $this->input->post('email', true);
-        $password = $this->input->post('password', true);
         $username = $this->input->post('username', true);
+        $password = md5($this->input->post('password', true));
         $role = $this->input->post('role', true);
 
         if (strlen($password) < 8) {
@@ -27,28 +28,23 @@ class Auth extends CI_Controller {
             return;
         }
 
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
         $data = [
             'email' => $email,
-            'password' => $hashed_password,
             'username' => $username,
+            'password' => $password,
             'role' => $role,
         ];
 
-        $result = $this->m_model->tambah_data('admin', $data);
+        // Simpan data ke database
+        $this->m_model->tambah_data('admin', $data);
 
         if ($result) {
             $this->session->set_flashdata('berhasil_register', 'Berhasil Registrasi, Silahkan Login');
             redirect(base_url('auth'));
         } else {
-            redirect(base_url('auth/register'));
+            $this->session->set_flashdata('gagal_register', 'Gagal Registrasi, Silahkan ulangi kembali!');
+            redirect(base_url('auth'));
         }
-    }
-
-    public function login()
-    {
-        $this->load->view('auth/login');
     }
 
     public function aksi_login()
@@ -69,43 +65,17 @@ class Auth extends CI_Controller {
             ];
             $this->session->set_userdata($data);
             if ($this->session->userdata('role') == 'admin') {
-                redirect(base_url() . 'admin');
+                $this->session->set_flashdata('berhasil_login', 'Selamat datang dimini project Dewi.');
+                redirect(base_url() . 'main');
             } else {
+                $this->session->set_flashdata('gagal_login', 'Silahkan periksa email dan password anda.');
                 redirect(base_url() . 'auth');
             }
         } else {
-            redirect(base_url() . 'auth/login');
+            $this->session->set_flashdata('gagal_login_i', 'Akun atau Password anda kosong!');
+            redirect(base_url() . 'auth');
         }
     }
-
-    // public function aksi_login() {
-    //     $email = $this->input->post('email', true);
-    //     $password = $this->input->post('password', true);
-    //     $data = ['email' => $email];
-
-    //     $query = $this->m_model->getwhere('admin', $data);
-    //     $result = $query->row_array(); 
-
-    //     if (!empty($result) && password_verify($password, $result['password'])) {
-    //         $data = [
-    //             'logged_in' => true,
-    //             'email' => $result['email'],
-    //             'username' => $result['username'],
-    //             'id' => $result['id'],
-    //         ];
-
-    //         $this->session->set_userdata($data);
-
-    //         if ($this->session->userdata('role') == 'admin') {
-    //             redirect(base_url('admin'));
-    //         } else {
-    //             $this->session->set_flashdata('gagal_login', 'Silahkan periksa email dan password anda.');
-    //             redirect(base_url('auth'));
-    //         }
-    //     } else {
-    //         redirect(base_url('auth/login'));
-    //     }
-    // }
 
     // fungsi logout
 	function logout()

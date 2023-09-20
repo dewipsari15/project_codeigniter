@@ -20,28 +20,28 @@ class Guru extends CI_Controller {
 
     public function guru() {
         $data['guru'] = $this->m_model->get_data('guru')->result();
-        $this->load->view('guru/guru', $data);
+        $this->load->view('guru', $data);
     }
 
     public function tambah_guru() {
-        $data['kelas'] = $this->m_model->get_data('kelas')->result();
+        $data['mapel'] = $this->m_model->get_data('mapel')->result();
         $this->load->view('guru/tambah_guru', $data);
     }
 
     public function aksi_tambah_guru() {
         $data = [
 			'nama_guru' => $this->input->post('nama'),
-			'nisn' => $this->input->post('nisn'),
+			'nik' => $this->input->post('nik'),
 			'gender' => $this->input->post('gender'),
-			'id_kelas' => $this->input->post('id_kelas'),
+			'id_mapel' => $this->input->post('id_mapel'),
 		];
 		$this->m_model->tambah_data('guru', $data);
-		redirect(base_url('guru/guru'));
+		redirect(base_url('guru'));
     }
 
     public function update_guru($id){
-        $data['guru']=$this->m_model->get_by_id('guru', 'id_guru', $id)->result();
-        $data['kelas']=$this->m_model->get_data('kelas')->result();
+        $data['guru']=$this->m_model->get_by_id('guru', 'id', $id)->result();
+        $data['mapel']=$this->m_model->get_data('mapel')->result();
         $this->load->view('guru/update_guru', $data);
     }
 
@@ -49,25 +49,25 @@ class Guru extends CI_Controller {
     {
         $data = array (
             'nama_guru' => $this->input->post('nama'),
-            'nisn' => $this->input->post('nisn'),
+            'nik' => $this->input->post('nik'),
             'gender' => $this->input->post('gender'),
-            'id_kelas' => $this->input->post('id_kelas'),
+            'id_mapel' => $this->input->post('id_mapel'),
         );
         $eksekusi=$this->m_model->update_data
-        ('guru', $data, array('id_guru'=>$this->input->post('id_guru')));
+        ('guru', $data, array('id'=>$this->input->post('id')));
         if($eksekusi)
         {
-            redirect(base_url('guru/guru'));
+            redirect(base_url('guru'));
         }
         else
         {
-            redirect(base_url('guru/update_guru/'.$this->input->post('id_guru')));
+            redirect(base_url('guru/update_guru/'.$this->input->post('id')));
         }
     }
 
     public function hapus_guru($id) {
-        $this->m_model->delete('guru', 'id_guru', $id);
-		redirect(base_url('guru/guru'));
+        $this->m_model->delete('guru', 'id', $id);
+		redirect(base_url('guru'));
     }
 }
 ?>
