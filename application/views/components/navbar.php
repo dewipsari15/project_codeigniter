@@ -78,7 +78,7 @@
 <body>
     <nav class="navbar">
         <div class="navbar-container navp">
-            <h1 class="logo">Navbar</h1>
+            <h1 class="logo">Haii, <?php echo $this->session->userdata('username') ?></h1>
         </div>
     </nav>
 </body>
