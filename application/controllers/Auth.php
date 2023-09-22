@@ -46,29 +46,6 @@ class Auth extends CI_Controller {
             redirect(base_url('auth')); 
         } 
     }
-    // public function aksi_register()
-    // {
-    //     $email = $this->input->post('email', true);
-    //     $username = $this->input->post('username', true);
-    //     $password = md5($this->input->post('password', true));
-    //     $role = $this->input->post('role', true);
-
-        
-    //     if (strlen($password) < 8 || !preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', $password)) {
-    //         $this->session->set_flashdata('salah_password', 'Password harus ada satu huruf kecil, satu huruf besar, dan satu angka.');
-    //         redirect(base_url('auth'));
-    //     } else {
-    //         $data = [
-    //             'email' => $email,
-    //             'username' => $username,
-    //             'password' => $password,
-    //             'role' => $role,
-    //         ];
-    //         $this->m_model->tambah_data('admin', $data);
-    //         $this->session->set_flashdata('berhasil_register', 'Berhasil Registrasi, Silahkan Login');
-    //         redirect(base_url('auth'));
-    //     }
-    // }
 
     public function aksi_login()
     {
