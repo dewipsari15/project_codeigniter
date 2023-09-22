@@ -40,6 +40,13 @@
             width: 300px;
         }
 
+        .card-header {
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+        }
+
         .card-body {
             padding: 20px;
         }
@@ -63,32 +70,44 @@
                 <div class="row">
                     <div class="col">
                     <div class="card">
+                        <div class="card-header">
+                            <p>Jumlah Siswa</p>
+                        </div>
                         <div class="card-body">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <b><?php echo $siswa ?></b>
+                            <p>Siswa</p>
                         </div>
                     </div>
                     </div>
                     <div class="col">
                         <div class="card">
+                            <div class="card-header">
+                                <p>Jumlah Guru</p>
+                            </div>
                             <div class="card-body">
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <b><?php echo $guru ?></b>
+                                <p>Guru</p>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card">
+                            <div class="card-header">
+                                <p>Jumlah Kelas</p>
+                            </div>
                             <div class="card-body">
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <b><?php echo $kelas ?></b>
+                                <p>Kelas</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

@@ -15,37 +15,60 @@ class Auth extends CI_Controller {
 	}
     
     // function aksinya
-    public function aksi_register()
-    {
-        $email = $this->input->post('email', true);
-        $username = $this->input->post('username', true);
-        $password = md5($this->input->post('password', true));
-        $role = $this->input->post('role', true);
+    public function aksi_register() 
+    { 
+        $this->load->library('form_validation'); 
+        
 
-        if (strlen($password) < 8) {
-            $this->session->set_flashdata('salah_password', 'Password harus 8 karakter');
-            redirect(base_url('auth'));
-            return;
-        }
-
-        $data = [
-            'email' => $email,
-            'username' => $username,
-            'password' => $password,
-            'role' => $role,
-        ];
-
-        // Simpan data ke database
-        $this->m_model->tambah_data('admin', $data);
-
-        if ($result) {
-            $this->session->set_flashdata('berhasil_register', 'Berhasil Registrasi, Silahkan Login');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email'); 
+        $this->form_validation->set_rules('username', 'username');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
+        $this->form_validation->set_rules('role', 'role');
+    
+        if ($this->form_validation->run() == FALSE) { 
+            $this->session->set_flashdata('salah_password', 'Password harus ada 8 karakter.');
             redirect(base_url('auth'));
         } else {
-            $this->session->set_flashdata('gagal_register', 'Gagal Registrasi, Silahkan ulangi kembali!');
-            redirect(base_url('auth'));
-        }
+            $email = $this->input->post('email', true);
+            $username = $this->input->post('username', true);
+            $password = md5($this->input->post('password', true));
+            $role = $this->input->post('role', true);
+    
+            $data = [ 
+                'email' => $email, 
+                'username' => $username,
+                'password' => $password,
+                'role' => $role,
+            ]; 
+    
+            $this->m_model->tambah_data('admin', $data); 
+            $this->session->set_flashdata('berhasil_register', 'Berhasil Registrasi, Silahkan Login');
+            redirect(base_url('auth')); 
+        } 
     }
+    // public function aksi_register()
+    // {
+    //     $email = $this->input->post('email', true);
+    //     $username = $this->input->post('username', true);
+    //     $password = md5($this->input->post('password', true));
+    //     $role = $this->input->post('role', true);
+
+        
+    //     if (strlen($password) < 8 || !preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', $password)) {
+    //         $this->session->set_flashdata('salah_password', 'Password harus ada satu huruf kecil, satu huruf besar, dan satu angka.');
+    //         redirect(base_url('auth'));
+    //     } else {
+    //         $data = [
+    //             'email' => $email,
+    //             'username' => $username,
+    //             'password' => $password,
+    //             'role' => $role,
+    //         ];
+    //         $this->m_model->tambah_data('admin', $data);
+    //         $this->session->set_flashdata('berhasil_register', 'Berhasil Registrasi, Silahkan Login');
+    //         redirect(base_url('auth'));
+    //     }
+    // }
 
     public function aksi_login()
     {

@@ -31,6 +31,7 @@ class Siswa extends CI_Controller {
 			'id_kelas' => $this->input->post('id_kelas'),
 		];
 		$this->m_model->tambah_data('siswa', $data);
+        $this->session->set_flashdata('berhasil_menambahkan', 'Data siswa berhasil ditambahkan.');
 		redirect(base_url('siswa'));
     }
 
@@ -52,6 +53,7 @@ class Siswa extends CI_Controller {
         ('siswa', $data, array('id_siswa'=>$this->input->post('id_siswa')));
         if($eksekusi)
         {
+            $this->session->set_flashdata('berhasil_mengupdate', 'Data siswa berhasil diupdate.');
             redirect(base_url('siswa'));
         }
         else

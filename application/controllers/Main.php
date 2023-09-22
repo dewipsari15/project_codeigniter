@@ -13,7 +13,10 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('main/main');
+		$data['siswa'] = $this->m_model->get_data('siswa')->num_rows();
+		$data['guru'] = $this->m_model->get_data('guru')->num_rows();
+		$data['kelas'] = $this->m_model->get_data('kelas')->num_rows();
+		$this->load->view('main/main', $data);
 	}
 }
 ?>

@@ -346,7 +346,7 @@
         <span class="tooltip">Guru</span>
       </li>
       <li class="profile">
-        <a href="<?php echo base_url('auth/logout'); ?>">
+        <a href="<?php echo base_url('auth/logout');  ?>" id="logoutLink">
           <i class="bx bx-log-out" id="log_out"></i>
         </a>
       </li>
@@ -378,6 +378,24 @@
             }
         }
     }
+
+    document.getElementById('logoutLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        
+        Swal.fire({
+            title: 'Konfirmasi Logout',
+            text: 'Apakah Anda yakin ingin logout?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Tempatkan tindakan logout Anda di sini
+                window.location.href = "<?php echo base_url('auth/logout'); ?>";
+            }
+        });
+    });
   </script>
 </body>
 </html>

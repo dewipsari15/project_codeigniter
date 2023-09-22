@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update Siswa</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .card {
         border: 1px solid #ccc;
@@ -158,7 +159,18 @@
         </div>
     </div>
     <script>
-        
+        const successMessage = "<?php echo $this->session->flashdata('berhasil_mengupdate'); ?>";
+        console.log(successMessage);
+    
+        if (successMessage) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: successMessage,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
 </body>
 </html>
